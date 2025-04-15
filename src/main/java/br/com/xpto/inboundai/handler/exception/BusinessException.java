@@ -1,0 +1,1 @@
+package br.com.xpto.inboundai.handler.exception;import java.io.Serial;public class BusinessException extends RuntimeException {	@Serial	private static final long serialVersionUID = -1153090279637794152L;	public BusinessException(String message) {		super(message);	}}

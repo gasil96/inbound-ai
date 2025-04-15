@@ -1,0 +1,1 @@
+package br.com.xpto.inboundai.service;import br.com.xpto.inboundai.model.MessageBody;import com.twilio.rest.api.v2010.account.Message;public interface MessageService {	Message sender(MessageBody outbound);	MessageBody receiver(MessageBody inbound);}

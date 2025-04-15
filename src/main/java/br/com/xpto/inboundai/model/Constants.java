@@ -1,0 +1,1 @@
+package br.com.xpto.inboundai.model;public class Constants {	public static final String RECEIVER_MESSAGE = "messageBody";	public static final String CHAT_RESPONSE = "chatResponse";}

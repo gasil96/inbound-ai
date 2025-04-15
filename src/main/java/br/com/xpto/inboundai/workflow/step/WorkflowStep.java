@@ -1,0 +1,1 @@
+package br.com.xpto.inboundai.workflow.step;import br.com.xpto.inboundai.workflow.context.GlobalContext;public interface WorkflowStep {	void execute(GlobalContext context);}

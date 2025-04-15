@@ -1,0 +1,1 @@
+package br.com.xpto.inboundai.service;public interface LLMService {	String openAiChat(String inputText);	String openRouterChat(String inputText);}
