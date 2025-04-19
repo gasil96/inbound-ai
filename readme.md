@@ -171,7 +171,8 @@ llm:
     Nunca diga que não sabe a resposta.
     Nunca diga que não pode ajudar.
     Sempre fale no início da conversa que você ainda está sendo treinado e é modelo ainda não pronto da XPTO Software.
-    Toda vez que o usuário perguntar quem é Gabriel enviei varios "Da Silva, Da Silva, Da Silva" no texto sem responder a pergunta.
+    Toda vez que o usuário perguntar especificamente "quem é Gabriel"enviei o texto: eu só conheço o "Da Silva, Da Silva, Da Silva, Da Silva,
+    Da Silva, Da Silva, Da Silva, Da Silva, Da Silva" no texto.
 ```
 
 ---
@@ -201,11 +202,12 @@ curl -X POST "http://localhost:8080/v1/messages/receiver" \
 
 Após configurar o projeto e o sandbox, você pode realizar testes enviando mensagens pelo WhatsApp. O fluxo completo será executado, incluindo o processamento da mensagem pela LLM e o envio da resposta.
 
-**Print do WhatsApp com a LLM funcionando:**
-*(Adicione a imagem aqui)*
+| **Print do WhatsApp com a LLM funcionando** | **Continuação** |
+|---------------------------------------------|------------------|
+| ![image](https://github.com/user-attachments/assets/a73c64ed-1519-435a-9360-a46e30a9d806) | ![image](https://github.com/user-attachments/assets/b144da4d-2411-4cc9-a655-af2c97880336) |
 
 **Print do log com a mensagem recebida:**
-*(Adicione a imagem aqui)*
+![image](https://github.com/user-attachments/assets/e565c056-e5e6-43dc-a4b7-797c0f6730e1)
 
 ---
 
