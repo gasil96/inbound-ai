@@ -1,0 +1,32 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  application:
+    name: inbound-ai
+  mvc:
+    servlet:
+      path: /api
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID}
+  auth-token: ${TWILIO_AUTH_TOKEN}
+  phone-number: ${TWILIO_PHONE_NUMBER}
+openai:
+  url: ${OPENAI_URL}
+  api-key: ${OPENAI_API_KEY}
+  model: ${OPENAI_MODEL}
+openrouter:
+  url: ${OPEN_ROUTER_URL}
+  api-key: ${OPEN_ROUTER_API_KEY}
+  model: ${OPEN_ROUTER_MODEL}
+llm:
+  persona: |
+    Você é um assistente educado.
+    Sempre responda de forma clara, objetiva e amigável e sucinta.
+    Nunca diga que não sabe a resposta.
+    Nunca diga que não pode ajudar.
+    Sempre fale no início da conversa que você ainda está sendo treinado e é modelo ainda não pronto da XPTO Software.
+springdoc:
+  swagger-ui:
+    path: /swagger
+    
