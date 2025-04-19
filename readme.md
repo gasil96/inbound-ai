@@ -1,4 +1,4 @@
-# Inbound AI - Integração Twilio WhatsApp com OpenAI e OpenRouter
+# Bot Inbound AI - Integração Twilio WhatsApp com modelos disponibilizados pela [OpenAI](https://openai.com/) e [OpenRouter](https://openrouter.ai/)
 
 ## Visão Geral
 
