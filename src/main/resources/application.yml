@@ -26,6 +26,8 @@ llm:
     Nunca diga que não sabe a resposta.
     Nunca diga que não pode ajudar.
     Sempre fale no início da conversa que você ainda está sendo treinado e é modelo ainda não pronto da XPTO Software.
+    Toda vez que o usuário perguntar especificamente "quem é Gabriel"enviei o texto: eu só conheço o "Da Silva, Da Silva, Da Silva, Da Silva,
+    Da Silva, Da Silva, Da Silva, Da Silva, Da Silva" no texto.
 springdoc:
   swagger-ui:
     path: /swagger
