@@ -1,3 +1,7 @@
+# PT-BR
+
+---
+
 # Bot: Inbound AI - Integração Twilio WhatsApp com modelos disponibilizados pela [OpenAI](https://openai.com/) e [OpenRouter](https://openrouter.ai/)
 
 ## Visão Geral
@@ -226,6 +230,220 @@ Para mais informações sobre as tecnologias utilizadas neste projeto, consulte 
 
 Este projeto é open-source e aceita contribuições da comunidade. Sinta-se à vontade para fazer um fork do repositório, enviar issues ou criar pull requests.
 
+<br>
+"Movement is life."
+
+<br><br><br>
+
 ---
 
-"Movimento é vida"
+# EN-US
+
+---
+
+# Bot: Inbound AI - Twilio WhatsApp Integration with models provided by [OpenAI](https://openai.com/) and [OpenRouter](https://openrouter.ai/)
+
+
+## Overview
+
+Inbound AI is a **proof-of-concept (POC)** project that integrates **Twilio's WhatsApp API** with **OpenAI** and **OpenRouter** models. The project demonstrates how to process incoming messages via webhook, interact with AI models to generate responses, and send these responses back to users.
+
+This project is **open-source** and can be used by the community as a reference for building similar integrations.
+
+---
+
+## Features
+
+- **WhatsApp Integration via Twilio**: Processes incoming messages and sends responses back to users.
+- **AI Model Integration**: Supports OpenAI and OpenRouter for generating conversational responses.
+- **Workflow Pattern**: Implements a **step-based workflow** with a **global context** to manage the message processing flow.
+- **Spring Boot**: Built with Spring Boot and Feign clients for API integrations.
+- **Extensibility**: Easily extendable to support other AI models or messaging platforms.
+
+---
+
+## How It Works
+
+### Workflow Execution
+
+The project uses a **workflow pattern** to process messages in a structured and modular way. Each step of the workflow is responsible for a specific task, and a **global context** is used to share data between the steps.
+
+#### Workflow Steps
+
+1. **ReceiverStep**: Initially processes the received message.
+2. **ProcessAiStep**: Interacts with AI models (OpenAI or OpenRouter) to generate a response.
+3. **SendStep**: Sends the generated response back to the user via Twilio.
+
+#### Global Context
+
+The **GlobalContext** class acts as a shared data repository for the workflow. It allows steps to read and write data without being tightly coupled. This pattern ensures that each step remains independent and reusable.
+
+```java
+public class GlobalContext {
+    private final Map<String, Object> data = new HashMap<>();
+
+    public void put(String key, Object value) {
+        data.put(key, value);
+    }
+
+    public Object get(String key) {
+        return data.get(key);
+    }
+
+    public <T> T get(String key, Class<T> clazz) {
+        return clazz.cast(data.get(key));
+    }
+}
+```
+
+#### Workflow Configuration
+
+The workflow is configured as a Spring Bean, and the steps are executed in the order defined by the `@Order` annotations.
+
+```java
+@Configuration
+public class WorkflowConfiguration {
+    @Bean
+    public InboundWorkflow inboundWorkflow(List<WorkflowStep> steps) {
+        return new InboundWorkflow(steps);
+    }
+}
+```
+
+---
+
+## Project Configuration
+
+### Prerequisites
+
+- **Java 17+**
+- **Maven**
+- **Twilio Account**: For WhatsApp integration.
+- **OpenAI and OpenRouter API Keys**: For AI model integration.
+
+### Configuration
+
+Update the `application.yml` file with your credentials and API keys:
+
+```yaml
+twilio:
+  account-sid: YOUR_TWILIO_ACCOUNT_SID
+  auth-token: YOUR_TWILIO_AUTH_TOKEN
+  phone-number: YOUR_TWILIO_PHONE_NUMBER
+
+openai:
+  url: https://api.openai.com/v1
+  api-key: YOUR_OPENAI_API_KEY
+  model: YOUR_OPENAI_MODEL
+
+openrouter:
+  url: YOUR_OPENROUTER_URL
+  api-key: YOUR_OPENROUTER_API_KEY
+  model: YOUR_OPENROUTER_MODEL
+```
+
+---
+
+### Running the Project
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/gasil96/inbound-ai.git
+   cd inbound-ai
+   ```
+2. Build the project:
+   ```bash
+   mvn clean install
+   ```
+3. Run the project:
+   ```bash
+   mvn spring-boot:run
+   ```
+4. Start ngrok to expose your local application:
+   ```bash
+   ngrok http 8080
+   ```
+5. Copy the generated URL from ngrok (e.g.: https://<subdomain>.ngrok.io) and configure it as the webhook in the Twilio Sandbox panel.
+
+6. Access the host(subdomain) generated /api/swagger
+
+---
+
+## Workflow Pattern
+
+### Why use a Workflow?
+
+The **workflow pattern** is a design approach that divides a process into discrete and reusable steps. Each step is responsible for a specific task, and a **global context** is used to share data between steps. This pattern offers several benefits:
+
+- **Modularity**: Each step is independent and can be reused in other workflows.
+- **Flexibility**: Steps can be added, removed, or reordered without impacting the overall workflow.
+- **Maintainability**: Separation of concerns makes the code easier to understand and maintain.
+
+---
+
+## Testing with Twilio Sandbox
+
+The **Twilio WhatsApp Sandbox** allows you to test the integration without needing approval for using the WhatsApp Business API. To set up the sandbox, access the Twilio panel, enable the WhatsApp Sandbox, and follow the instructions to connect your phone number to the test environment.
+
+---
+
+## Preconfigured Prompts
+
+In this project, the `llm.persona` parameter defined in the `application.yml` file is used to configure the virtual assistant's behavior. This text is sent as a "system" message in the `LLMServiceImpl` for both configured models (OpenAI and OpenRouter). It guides the model to respond politely, clearly, objectively, and includes specific messages to customize the interaction.
+
+```yaml
+llm:
+  persona: |
+    You are a polite assistant.
+    Always respond clearly, objectively, and in a friendly and concise manner.
+    Never say you don't know the answer.
+    Never say you can't help.
+    Always mention at the beginning of the conversation that you are still being trained and are an incomplete model by XPTO Software.
+    Whenever the user specifically asks "who is Gabriel" reply with the text: I only know "Da Silva, Da Silva, Da Silva, Da Silva,
+    Da Silva, Da Silva, Da Silva, Da Silva, Da Silva".
+```
+
+---
+
+## API Endpoints
+
+### Receive Message
+
+**Endpoint**: `/v1/messages/receiver`  
+**Method**: `POST`  
+**Description**: Webhook to receive messages from Twilio.
+
+**Parameters**:
+- `From`: Sender's phone number.
+- `Body`: Message content.
+
+**Request Example**:
+```bash
+curl -X POST "http://localhost:8080/v1/messages/receiver"   -d "From=whatsapp:+1234567890"   -d "Body=Hello"
+```
+
+---
+
+## Testing
+
+After configuring the project and the sandbox, you can perform tests by sending messages via WhatsApp. The full flow will be executed, including the message processing by the LLM and sending the response back.
+
+---
+
+## References
+
+For more information about the technologies used in this project, check the links below:
+
+- [Setting up Java development environment with Twilio](https://www.twilio.com/docs/usage/tutorials/how-to-set-up-your-java-development-environment#create-a-twilio-application)
+- [Spring Boot WhatsApp Integration with Twilio](https://www.baeldung.com/spring-boot-twilio-whatsapp)
+- [OpenAI API Documentation](https://platform.openai.com/docs/api-reference)
+- [OpenRouter API Documentation](https://openrouter.ai/docs/quickstart)
+- [Reading about Chain of Responsibility](https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern)
+
+---
+
+## Contributing
+
+This project is open-source and welcomes community contributions. Feel free to fork the repository, submit issues, or create pull requests.
+
+"Movement is life."
