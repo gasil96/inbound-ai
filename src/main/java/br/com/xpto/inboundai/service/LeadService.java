@@ -1,0 +1,1 @@
+package br.com.xpto.inboundai.service;import br.com.xpto.inboundai.model.Lead;import java.util.List;import java.util.Optional;public interface LeadService {	void create(Lead lead);	void update(Lead lead);	void deleteById(String id);	Optional<Lead> getLeadById(String id);	List<Lead> getAll();}

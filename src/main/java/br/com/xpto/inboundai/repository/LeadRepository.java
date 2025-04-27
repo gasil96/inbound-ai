@@ -1,0 +1,1 @@
+package br.com.xpto.inboundai.repository;import br.com.xpto.inboundai.model.Lead;import org.springframework.data.mongodb.repository.MongoRepository;import org.springframework.stereotype.Repository;@Repositorypublic interface LeadRepository extends MongoRepository<Lead, String> {}

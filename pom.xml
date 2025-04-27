@@ -65,6 +65,15 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <version>4.2.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.12.14</version>
+        </dependency>
     </dependencies>
 
     <build>
