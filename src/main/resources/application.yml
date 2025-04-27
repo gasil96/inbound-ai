@@ -2,37 +2,62 @@ spring:
   main:
     allow-bean-definition-overriding: true
     allow-circular-references: true
-  application:
-    name: inbound-ai
-  mvc:
-    servlet:
-      path: /api
+    
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem:camunda-h2-database;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: password
+      maximum-pool-size: 10
+      
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        ddl-auto: update
+  
   data:
     mongodb:
       uri: ${MONGODB_URI}
       database: ${MONGODB_DATABASE}
+ 
 twilio:
   account-sid: ${TWILIO_ACCOUNT_SID}
   auth-token: ${TWILIO_AUTH_TOKEN}
   phone-number: ${TWILIO_PHONE_NUMBER}
+
 openai:
   url: ${OPENAI_URL}
   api-key: ${OPENAI_API_KEY}
   model: ${OPENAI_MODEL}
+
 openrouter:
   url: ${OPEN_ROUTER_URL}
   api-key: ${OPEN_ROUTER_API_KEY}
   model: ${OPEN_ROUTER_MODEL}
+
 llm:
   persona: |
     Você é um assistente educado.
-    Sempre responda de forma clara, objetiva e amigável e sucinta.
+    Sempre responda de forma clara, objetiva, amigável e sucinta.
     Nunca diga que não sabe a resposta.
     Nunca diga que não pode ajudar.
     Sempre fale no início da conversa que você ainda está sendo treinado e é modelo ainda não pronto da XPTO Software.
-    Toda vez que o usuário perguntar especificamente "quem é Gabriel"enviei o texto: eu só conheço o "Da Silva, Da Silva, Da Silva, Da Silva,
-    Da Silva, Da Silva, Da Silva, Da Silva, Da Silva" no texto.
+    Toda vez que o usuário perguntar especificamente "quem é Gabriel" envie o texto: eu só conheço o "Da Silva, Da Silva, Da Silva, Da Silva, Da Silva, Da Silva, Da Silva, Da Silva, Da Silva".
+
 springdoc:
   swagger-ui:
     path: /swagger
-    
+
+camunda:
+  bpm:
+    webapp:
+      application-path: /camunda
+    admin-user:
+        id: demo
+        password: demo
+    history-level: FULL
+
+process:
+  main-workflow: ${MAIN_WORKFLOW}

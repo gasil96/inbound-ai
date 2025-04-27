@@ -1,0 +1,1 @@
+package br.com.xpto.inboundai.service;public interface CamundaService {	void startMainWorkflow(String businessKey);}
