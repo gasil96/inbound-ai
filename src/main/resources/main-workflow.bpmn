@@ -81,14 +81,14 @@
     <bpmn:sequenceFlow id="Flow_0bpg4r8" name="Não" sourceRef="Gateway_1dygoa3" targetRef="Activity_0009lxo">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${payloadQualifier == false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:userTask id="Activity_0009lxo" name="Devolutiva Lead">
-      <bpmn:incoming>Flow_0bpg4r8</bpmn:incoming>
-      <bpmn:outgoing>Flow_1wt0ra7</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:endEvent id="Event_0d8d9qo">
       <bpmn:incoming>Flow_1wt0ra7</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1wt0ra7" sourceRef="Activity_0009lxo" targetRef="Event_0d8d9qo" />
+    <bpmn:serviceTask id="Activity_0009lxo" name="Devolutiva Lead">
+      <bpmn:incoming>Flow_0bpg4r8</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wt0ra7</bpmn:outgoing>
+    </bpmn:serviceTask>
     <bpmn:textAnnotation id="TextAnnotation_0tsr4mj">
       <bpmn:text>Inicia/Reabre conversa com Lead</bpmn:text>
     </bpmn:textAnnotation>
@@ -109,9 +109,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="858" y="85" width="25" height="14" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0e4s676_di" bpmnElement="Activity_0whk2g2">
-        <dc:Bounds x="990" y="247" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1dygoa3_di" bpmnElement="Gateway_1dygoa3" isMarkerVisible="true">
         <dc:Bounds x="1165" y="262" width="50" height="50" />
@@ -146,9 +143,6 @@
           <dc:Bounds x="709" y="425" width="65" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1ks198p_di" bpmnElement="Activity_0009lxo">
-        <dc:Bounds x="1290" y="390" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0d8d9qo_di" bpmnElement="Event_0d8d9qo">
         <dc:Bounds x="1472" y="412" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -157,6 +151,12 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="403" y="312" width="67" height="40" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0e4s676_di" bpmnElement="Activity_0whk2g2">
+        <dc:Bounds x="1000" y="247" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ot630h_di" bpmnElement="Activity_0009lxo">
+        <dc:Bounds x="1290" y="390" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0tsr4mj_di" bpmnElement="TextAnnotation_0tsr4mj">
         <dc:Bounds x="440" y="125" width="99.9959660068847" height="54.996772805507746" />
@@ -168,10 +168,10 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1qk9fsy_di" bpmnElement="Flow_1qk9fsy">
         <di:waypoint x="920" y="287" />
-        <di:waypoint x="990" y="287" />
+        <di:waypoint x="1000" y="287" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0m4zlnv_di" bpmnElement="Flow_0m4zlnv">
-        <di:waypoint x="1090" y="287" />
+        <di:waypoint x="1100" y="287" />
         <di:waypoint x="1165" y="287" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0bu8xe6_di" bpmnElement="Flow_0bu8xe6">
