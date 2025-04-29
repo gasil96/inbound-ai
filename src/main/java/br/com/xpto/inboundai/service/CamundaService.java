@@ -1,1 +1,1 @@
-package br.com.xpto.inboundai.service;public interface CamundaService {	void startMainWorkflow(String businessKey);}
+package br.com.xpto.inboundai.service;import br.com.xpto.inboundai.model.Main;public interface CamundaService {	void startMainWorkflow(String businessKey, Main main);}

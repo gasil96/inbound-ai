@@ -1,0 +1,1 @@
+package br.com.xpto.inboundai.delegate;public class BuildCloserEmailDelegate {}

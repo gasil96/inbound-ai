@@ -48,7 +48,7 @@ llm:
 
 springdoc:
   swagger-ui:
-    path: /swagger
+    path: /api/swagger
 
 camunda:
   bpm:
